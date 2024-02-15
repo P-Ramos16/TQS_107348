@@ -1,0 +1,2 @@
+The tqs.euromillions, more specifically, the Dip and CuponEuromillions functions are the ones that offer the least test coverage .
+One branch of CuponEuromillions and several of Dip are not covered by any of the tests.
