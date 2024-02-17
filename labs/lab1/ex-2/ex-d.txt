@@ -1,0 +1,2 @@
+After running the coverage test again, we can guarante that all the possible outcomes of the BoundedSetOfNaturals functions are accounted and tested for.
+No branches are missed and all the test-worthy functionalities were tested.

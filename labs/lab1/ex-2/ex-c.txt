@@ -1,2 +1,9 @@
-The tqs.euromillions, more specifically, the Dip and CuponEuromillions functions are the ones that offer the least test coverage .
+The tqs.euromillions, more specifically, the Dip and CuponEuromillions functions are the ones that offer the least test coverage.
 One branch of CuponEuromillions and several of Dip are not covered by any of the tests.
+
+As for the BoudedSetOfNaturals class, it seems that coverage is not great, with multiple untested branches and outputs untested.
+Functions such as "fromArray(int[])", "add(int)" and "intersects()" can have potentional untested outcomes that can cause problems in development.
+Other functions such as "hashCode()", "size()", etc... are simpler functions that are very common but a simple test should at least be writen for all to ensure proper coverage.
+
+The unit tests I have chosen to write involve accounting for all the outcomes of the "add()", "equals()", "intersects()" and "size()", and adding a simple test for the common "hash()" function.
+To note that the "intersects()" function was implemented based on common knowledge of the concept of intersections.

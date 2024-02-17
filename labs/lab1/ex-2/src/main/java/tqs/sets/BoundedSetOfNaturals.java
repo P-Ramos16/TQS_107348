@@ -64,8 +64,20 @@ public class BoundedSetOfNaturals implements Iterable<Integer> {
     }
 
 
-    //TODO implement the intersect logic
     public boolean intersects(BoundedSetOfNaturals subset) {
+        if (this == subset) {
+            return true;
+        }
+        if (subset == null) {
+            return false;
+        }
+
+        for (Integer element : subset.collection) {
+            if (this.contains(element)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
