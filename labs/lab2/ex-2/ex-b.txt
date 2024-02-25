@@ -1,0 +1,2 @@
+In this case the Subject Under Test (SuT) would be the AddressResolverService, with both the findAddressForLocation and prepareUriForRemoteEndpoint methods being tested and not being either mocks or stubs.  
+Since the testing of this method does not require actual correct data, the httpClient.doHttpGet(endpointUri) method could be mocked in order to provide controlled mocked responses for easier testing without having to guarantee that the REST interface and associated components also work as expected, since those are not being looked at in this specific test.
