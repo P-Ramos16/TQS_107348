@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>tqs.selenium_tests</groupId>
+  <artifactId>selenium_tests</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>selenium_tests</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <junit-jupiter.version>5.10.2</junit-jupiter.version>
+    <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+    <selenium-java.version>4.18.1</selenium-java.version>
+    <selenium-jupiter.version>5.0.1</selenium-jupiter.version>
+    <slf4j.version>2.0.12</slf4j.version>
+    <assertj.version>3.25.3</assertj.version>
+    <logback.version>1.4.14</logback.version>
+    <hamcrest.version>2.2</hamcrest.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter</artifactId>
+          <version>${junit-jupiter.version}</version>
+          <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+          <version>${selenium-java.version}</version>
+          <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+          <groupId>io.github.bonigarcia</groupId>
+          <artifactId>selenium-jupiter</artifactId>
+          <version>${selenium-jupiter.version}</version>
+          <scope>test</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.assertj</groupId>
+          <artifactId>assertj-core</artifactId>
+          <version>${assertj.version}</version>
+          <scope>test</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>${logback.version}</version>
+          <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest</artifactId>
+          <version>${hamcrest.version}</version>
+          <scope>test</scope>
+      </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </pluginManagement>
+  </build>
+</project>
