@@ -25,8 +25,8 @@ import org.junit.platform.suite.api.Suite;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("tqs/calculator")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "tqs.calculator")
+@SelectClasspathResource("tqs/booksearch")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "tqs.booksearch")
 public class Cucumber_Tests {
 
 }

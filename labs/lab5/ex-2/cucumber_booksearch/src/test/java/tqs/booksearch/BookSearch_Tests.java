@@ -13,29 +13,63 @@ import tqs.booksearch.Library;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import io.cucumber.datatable.DataTable;
+import java.util.Map;
+import io.cucumber.java.Before;
+
+import org.apache.commons.lang3.ObjectUtils.Null;
+import org.apache.commons.lang3.time.DateUtils;
  
 public class BookSearch_Tests {
 	Library library = new Library();
 	List<Book> result = new ArrayList<>();
- 
-	@Given(".+book with the title '(.+)', written by '(.+)', published in (.+)")
-	public void addNewBook(final String title, final String author, final Date published) {
-		Book book = new Book(title, author, published);
-		library.addBook(book);
+
+	@Before
+    public void setUp() {
+        library = new Library();
+        result = new ArrayList<>();
+    }
+
+	@Given("I have a list of books")
+	public void haveBooksInTheStoreByMap(DataTable table) {
+		List<Map<String, String>> rows = table.asMaps(String.class, String.class);
+
+		for (Map<String, String> columns : rows) {
+			try {
+				library.addBook(new Book(columns.get("Title"), columns.get("Author"), DateUtils.parseDate(columns.get("Date"), new String[] {"yyyy-MM-dd-HH:mm+ss"})));
+			}
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+	@When("I search for books by author {string}")	
+	public void i_search_for_books_by_author(String author) {
+		result = library.findBookbyAuthor(author);
 	}
  
-	@When("^the customer searches for books published between (\\d+) and (\\d+)$")
-	public void setSearchParameters(final Date from, final Date to) {
-		result = library.findBooks(from, to);
+	@When("I search for books by the date {string} to {string}")
+	public void i_search_for_books_by_the_date(String datestart, String datefinish) {
+		try {
+			Date dateStart = DateUtils.parseDate(datestart, new String[] {"yyyy-MM-dd-HH:mm+ss"});
+			Date dateFinish = DateUtils.parseDate(datefinish, new String[] {"yyyy-MM-dd-HH:mm+ss"});
+			result = library.findBooks(dateStart, dateFinish);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			result = null;
+		}
 	}
  
-	@Then("(\\d+) books should have been found$")
-	public void verifyAmountOfBooksFound(final int booksFound) {
+	@When("I search for books by title {string}")
+	public void i_search_for_books_by_title(String title) {
+		result = library.findBookbyTitle(title);
+	}
+ 
+	@Then("I should find {int} books")
+	public void verifyAmountOfBooksFound(int booksFound) {
 		assertThat(result.size(), equalTo(booksFound));
-	}
- 
-	@Then("Book (\\d+) should have the title '(.+)'$")
-	public void verifyBookAtPosition(final int position, final String title) {
-		assertThat(result.get(position - 1).getTitle(), equalTo(title));
 	}
 }

@@ -23,4 +23,16 @@ public class Library {
 			return from.before(book.getPublished()) && end.getTime().after(book.getPublished());
 		}).sorted(Comparator.comparing(Book::getPublished).reversed()).collect(Collectors.toList());
 	}
+
+    public List<Book> findBookbyAuthor(final String author) {
+		return store.stream().filter(book -> {
+			return book.getAuthor().contains(author);
+		}).sorted(Comparator.comparing(Book::getAuthor)).collect(Collectors.toList());
+	}
+
+    public List<Book> findBookbyTitle(final String title) {
+		return store.stream().filter(book -> {
+			return book.getTitle().contains(title);
+		}).sorted(Comparator.comparing(Book::getTitle)).collect(Collectors.toList());
+	}
 }
