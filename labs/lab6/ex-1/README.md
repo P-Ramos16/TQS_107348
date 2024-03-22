@@ -1,24 +1,33 @@
 # Lab6 Ex1
 ### Euromillions test coverage with sonarqube
 
-#### Ex e:
-<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_result.png?raw=true" width="650" height="420">
+#### Ex e - Has your project passed the defined quality gate?:
+<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_result.png?raw=true" width="1000">
+
+---
 
  - The project itself just passed the gate with a final coverage of 80.0%, but for example, the BoundedSetOfNaturals class was completely covered, as well as most of the classes that implement the login of this project.
  - The CuponEuromillions and Main class were the least covered, with 35% and 0% coverage each.
 
-<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_coverage.png?raw=true" width="650" height="420">
+<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_coverage.png?raw=true" width="1000">
+
+---
+
  - As for issues, 24 low severity issues were found amounting to a estimated effort time of 1 hour and 18 minutes.
 
+<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_issue_list.png?raw=true" width="1000">
 
-<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_issue_list.png?raw=true" width="650" height="420">
+---
 
  - One severe security issue was found due to the use of the "Random" Java class that as been proved to not be very good at generating safe pseudorandom numbers.
 
-<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_security_issue.png?raw=true" width="650" height="420">
+<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_security_issue.png?raw=true" width="1000">
+
+---
 
  - The final ratings were considered good for the Reliability and Security evaluation.
- - <img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_ratings.png?raw=true" width="650" height="420">
+
+<img src="https://github.com/P-Ramos16/TQS_107348/blob/main/labs/lab6/ex-1/sonarqube_ratings.png?raw=true" width="1000">
 
 
 
