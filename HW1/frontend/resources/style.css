@@ -3,13 +3,16 @@
     --layer-1: #353D61;
     --layer-2: #5663a0;
     --primary: #39C3E7;
+    --primary-hover: rgb(57, 209, 196);
     --secondary: #FF6855;
+    --success: #00E95D;
     --text-white: #cccccc;
 }
 
 body {
     font-family: 'Helvetica', 'Arial', sans-serif;
     background-color: var(--main-bg);
+    overflow-y: hidden;
 }
 
 h2 {
@@ -42,16 +45,20 @@ h4 {
 }
 
 .main_container {
-    width: 98vw;
+    width: 57vw;
     background-color: var(--layer-1);
     padding: 20px;
-    margin: 1vw 1vw 0px 1vw;
+    margin: 1vw 0px 0px 1vw;
     border-radius: 10px;
+    height: 29vh;
+    float: left;
 }
 
 .inner_container {
-    width: 96vw;
+    width: 55vw;
     background-color: var(--main-bg);
+    border-radius: 10px;
+    height: 16.5vh;
 }
 
 .header_text, .body_text {
@@ -63,7 +70,7 @@ h4 {
   background-image: url("../resources/img_parallax.jpg");
 
   /* Set a specific height */
-  height: 600px;
+  height: 650px;
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -78,28 +85,32 @@ h4 {
     top: 1vh;
     margin: 0px 0px 1vw 1vw;
     position: relative;
-    width: 20vw;
+    width: 17.5vw;
     float: left;
-    left: 25vw;
+    left: 5.5vw;
 }
   
-.select_box select {
-    background-color: var(--secondary);
+.select_box select, input {
+    border-radius: 5px;
+    background-color: var(--primary);
     color: white;
     padding: 12px;
-    width: 20vw;
+    width: 17.5vw;
     border: none;
     font-size: 20px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
     outline: none;
+    transition: all 250ms;
 }
 
-.select_box select:hover {
-    background-color: var(--layer-2);
+.select_box select:hover, input:hover {
+    background-color: var(--primary-hover);
+    cursor: pointer;
 }
 
 .select_box select option {
     padding: 30px;
+    font-family: FontAwesome;
 }
 
 select {
@@ -119,9 +130,17 @@ select {
     padding-right: 2rem;
 }
 
+input {
+    position: relative;
+    left: 14.5vw;
+    width: 25vw;
+    margin-bottom: 1vh;
+    font-family: FontAwesome;
+}
+
 .arrow_box {
     float: left;
-    left: 26vw;
+    left: 6.5vw;
     margin: 0px 1vw 0px 1vw;
     top: 18px;
     position: relative;
@@ -133,4 +152,14 @@ select {
     color: var(--primary);
     margin: 0px;
     padding: 0px;
+}
+
+.ticket_list {
+    text-align: center;
+}
+
+.ticket_list h3 {
+    color: var(--secondary);
+    position: relative;
+    top: 7vh;
 }

@@ -24,8 +24,9 @@
         <div class="parallax"></div>
 
         <div class="main_container">
-            <h2> Road Roam Bus Tickets </h2>
+            <h2> Purchase Road Roam Bus Tickets </h2>
             <h4> Please select your origin and destination! </h4>
+
             <div class="inner_container">
 
                 <form class="search_form" onsubmit="return search_form();">
@@ -45,7 +46,7 @@
                     </div>
                     <div class="select_box">
                         <select id="destination">
-                            <option value="" selected disabled hidden>Destination</option>
+                            <option value="" selected disabled hidden> Destination</option>
                             <option>Lisbon</option>
                             <option>Porto</option>
                             <option>London</option>
@@ -54,22 +55,31 @@
                       </div>
 
                     <br><br><br><br>
-                    <input type="submit" value="Submit"/>
+                    <input type="submit" value="&#xf002; Search"/>
                 </form>
             
+            </div>
+        </div>
+
+
+        <div class="main_container" style="width:40vw;">
+            <h2> Aquired Road Roam Bus Tickets </h2>
+            <h4> List of all aquired tickets </h4>
+            <div class="inner_container" style="width:38vw;">
+                <div class="ticket_list">
+                    <h3> You have no tickets purchased yet! </h3>
+                </div>
             </div>
         </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
-        document.getElementById("origin").style.backgroundColor = "var(--primary)";
-        document.getElementById("destination").style.backgroundColor = "var(--primary)";
         document.getElementById('origin').onchange  = (event) => {
-            document.getElementById("origin").style.backgroundColor = "var(--secondary)";
+            document.getElementById("origin").style.backgroundColor = "var(--success)";
         }
         document.getElementById('destination').onchange  = (event) => {
-            document.getElementById("destination").style.backgroundColor = "var(--secondary)";
+            document.getElementById("destination").style.backgroundColor = "var(--success)";
         }
     </script>
 
