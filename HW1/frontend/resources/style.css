@@ -1,0 +1,136 @@
+:root {
+    --main-bg: #EBE4D2;
+    --layer-1: #353D61;
+    --layer-2: #5663a0;
+    --primary: #39C3E7;
+    --secondary: #FF6855;
+    --text-white: #cccccc;
+}
+
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-color: var(--main-bg);
+}
+
+h2 {
+    color: var(--primary);
+}
+
+h4 {
+    color: var(--secondary);
+}
+
+.navbar {
+    border-radius: 10px;
+    z-index: 10;
+    width: 98vw;
+    margin: 1vw 0px 0px 1vw;
+    position: absolute;
+}
+
+.bg-navbar {
+    background-color: var(--layer-1) !important;
+}
+
+.nav-item > * {
+    color: var(--primary) !important;
+}
+
+.navbar-logo {
+    height: 7.5vh;
+    margin-left: 1vw;
+}
+
+.main_container {
+    width: 98vw;
+    background-color: var(--layer-1);
+    padding: 20px;
+    margin: 1vw 1vw 0px 1vw;
+    border-radius: 10px;
+}
+
+.inner_container {
+    width: 96vw;
+    background-color: var(--main-bg);
+}
+
+.header_text, .body_text {
+    padding: 1px 10px 3px 10px;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("../resources/img_parallax.jpg");
+
+  /* Set a specific height */
+  height: 600px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+
+.select_box {
+    top: 1vh;
+    margin: 0px 0px 1vw 1vw;
+    position: relative;
+    width: 20vw;
+    float: left;
+    left: 25vw;
+}
+  
+.select_box select {
+    background-color: var(--secondary);
+    color: white;
+    padding: 12px;
+    width: 20vw;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.select_box select:hover {
+    background-color: var(--layer-2);
+}
+
+.select_box select option {
+    padding: 30px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    appearance:none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='32' viewBox='0 0 32 32' width='32' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h32v32H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 14px;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    margin-right: 2rem;
+    padding: 1rem;
+    padding-right: 2rem;
+}
+
+.arrow_box {
+    float: left;
+    left: 26vw;
+    margin: 0px 1vw 0px 1vw;
+    top: 18px;
+    position: relative;
+}
+
+.arrow_box i {
+    position: relative;
+    font-size: 40px;
+    color: var(--primary);
+    margin: 0px;
+    padding: 0px;
+}
