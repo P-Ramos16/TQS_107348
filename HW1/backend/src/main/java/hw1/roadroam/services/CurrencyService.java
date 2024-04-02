@@ -26,7 +26,7 @@ public class CurrencyService {
     //  Epoch time from the last update
     private long lastUpdate = 0;
     //  Seconds for cache to become invalid
-    private Integer cacheUpdateTime = 3;
+    private Integer cacheUpdateTime = 30;
 
     public CurrencyService(CurrencyRepo currencyRepository) {
         this.currencyRepository = currencyRepository;
@@ -48,9 +48,11 @@ public class CurrencyService {
 
             // Extract conversion_rates and time_last_update_unix
             Map<String, Double> conversionRates = (Map<String, Double>) responseMap.get("conversion_rates");
-            this.lastUpdate = ((Number) responseMap.get("time_last_update_unix")).longValue();
+            //this.lastUpdate = ((Number) responseMap.get("time_last_update_unix")).longValue();
 
-            System.out.println("RELOAD CACHE:");
+            this.lastUpdate = System.currentTimeMillis() / 1000;
+
+            System.out.println("Currenct Cache Reload: From " + this.lastUpdate + " to " + (this.lastUpdate + this.cacheUpdateTime));
 
             currencyRepository.deleteAll();
 
@@ -61,7 +63,7 @@ public class CurrencyService {
                 curr.setAbreviation(abre);
                 curr.setExchange_rate(set.getValue());
 
-                System.out.println("[" + abre + ":" + set.getValue() + "]");
+                currencyRepository.save(curr);
             }
         } 
         catch (IOException e) {
@@ -72,7 +74,7 @@ public class CurrencyService {
     }
 
     public List<Currency> listCurrencies() {
-        long current_time = System.currentTimeMillis() * 1000000L;
+        long current_time = System.currentTimeMillis() / 1000;
         
         if (current_time > this.lastUpdate + this.cacheUpdateTime) {
             reloadCache();
@@ -82,14 +84,14 @@ public class CurrencyService {
     }
 
 
-    public Currency getCurrency(Long id) {
-        long current_time = System.currentTimeMillis() * 1000000L;
+    public Currency getCurrency(String abre) {
+        long current_time = System.currentTimeMillis() / 1000;
         
         if (current_time > this.lastUpdate + this.cacheUpdateTime) {
             reloadCache();
         }
 
-        Optional<Currency> currency = currencyRepository.findById(id);
+        Optional<Currency> currency = currencyRepository.findByAbreviation(abre);
         if (currency.isPresent()) {
             return currency.get();
         }

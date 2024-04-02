@@ -6,6 +6,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.FetchType;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -24,18 +27,18 @@ public class Trip {
     private Integer numberOfSeatsTotal;
     private String tripLength;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date date;
+    @JsonFormat(pattern = "HH:mm:ss")
     private String time;
 
-    private String busNumber;
+    private Integer busNumber;
     private Double basePrice;
 
     private LinkedList<Integer> filledSeats;
 
-
     @ManyToOne
     private City origin;
-    
     @ManyToOne
     private City destination;
 
@@ -105,11 +108,11 @@ public class Trip {
         this.time = time;
     }
 
-    public String getBusNumber() {
+    public Integer getBusNumber() {
         return busNumber;
     }
 
-    public void setBusNumber(String busNumber) {
+    public void setBusNumber(Integer busNumber) {
         this.busNumber = busNumber;
     }
 
@@ -125,7 +128,7 @@ public class Trip {
         return filledSeats;
     }
 
-    public void setFilledSteat(int seatID, boolean toFill) {
+    public void fillSeat(int seatID, boolean toFill) {
         if (toFill) {
             this.filledSeats.add(seatID);
         }

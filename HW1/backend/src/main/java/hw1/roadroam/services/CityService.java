@@ -1,9 +1,10 @@
 package hw1.roadroam.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hw1.roadroam.models.Ticket;
-import hw1.roadroam.repositories.TicketRepo;
+import hw1.roadroam.models.City;
+import hw1.roadroam.repositories.CityRepo;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,24 +12,25 @@ import java.util.Optional;
 @Service
 public class CityService {
 
-    final TicketRepo ticketRepository;
+    @Autowired
+    final CityRepo cityRepository;
 
-    public CityService(TicketRepo ticketRepository) {
-        this.ticketRepository = ticketRepository;
+    public CityService(CityRepo cityRepository) {
+        this.cityRepository = cityRepository;
     }
 
-    public Ticket save(Ticket c) {
-        return ticketRepository.save(c);
+    public City save(City c) {
+        return cityRepository.save(c);
     }
 
-    public List<Ticket> listCurrencies() {
-        return ticketRepository.findAll();
+    public List<City> listCities() {
+        return cityRepository.findAll();
     }
 
-    public Ticket getTicket(Long id) {
-        Optional<Ticket> ticket = ticketRepository.findById(id);
-        if (ticket.isPresent()) {
-            return ticket.get();
+    public City getCity(Long id) {
+        Optional<City> city = cityRepository.findById(id);
+        if (city.isPresent()) {
+            return city.get();
         }
         else {
             return null;

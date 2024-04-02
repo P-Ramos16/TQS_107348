@@ -21,7 +21,7 @@ public class TicketService {
         return ticketRepository.save(c);
     }
 
-    public List<Ticket> listCurrencies() {
+    public List<Ticket> listTickets() {
         return ticketRepository.findAll();
     }
 

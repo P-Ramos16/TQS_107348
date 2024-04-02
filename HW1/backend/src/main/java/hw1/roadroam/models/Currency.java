@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "currency")
@@ -30,6 +31,7 @@ public class Currency {
         return id.equals(curr.id) && Objects.equals(abreviation, curr.abreviation) && Objects.equals(exchange_rate, curr.exchange_rate);
     }
 
+    @JsonIgnore
     public Long getId() {
         return id;
     }

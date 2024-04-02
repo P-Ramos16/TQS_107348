@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import hw1.roadroam.models.Ticket;
-import hw1.roadroam.services.CarService;
+import hw1.roadroam.services.TicketService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,36 +16,35 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @RestController
-@RequestMapping("/car")
-public class CarController {
+@RequestMapping("/tickets")
+public class TicketController {
 
-    private final CarService carService;
+    private final TicketService ticketService;
 
-    public CarController(CarService service) {
-        this.carService = service;
+    public TicketController(TicketService service) {
+        this.ticketService = service;
     }
 
-
-    @PostMapping("/add") public ResponseEntity<Ticket> createCar(@RequestBody Ticket oneCar) {
+    @PostMapping("/buy") public ResponseEntity<Ticket> createTicket(@RequestBody Ticket oneTicket) {
         HttpStatus status = HttpStatus.CREATED;
-        Ticket saved = carService.save(oneCar);
+        Ticket saved = ticketService.save(oneTicket);
         return new ResponseEntity<>(saved, status);
     }
 
     @GetMapping(path = "/list",  produces = "application/json")
-    public List<Ticket> getAllCars() {
-        return carService.listCars();
+    public List<Ticket> getAllTickets() {
+        return ticketService.listTickets();
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Ticket> getCarById(@PathVariable(value = "id") Long id) {
-        Ticket car = carService.getCar(id);
+    public ResponseEntity<Ticket> getTicketById(@PathVariable(value = "id") Long id) {
+        Ticket ticket = ticketService.getTicket(id);
         
-        if (car == null) {
+        if (ticket == null) {
             return ResponseEntity.badRequest().body(null);
         }
         
-        return ResponseEntity.ok().body(car);
+        return ResponseEntity.ok().body(ticket);
     }
 
 }

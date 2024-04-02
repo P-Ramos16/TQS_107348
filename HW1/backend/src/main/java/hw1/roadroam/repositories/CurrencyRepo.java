@@ -11,7 +11,7 @@ public interface CurrencyRepo extends JpaRepository<Currency, Long> {
 
     public Optional<Currency> findById(Long id);
 
-    public Currency findByAbreviation(String model);
+    public Optional<Currency> findByAbreviation(String model);
 
     public List<Currency> findAll();
 

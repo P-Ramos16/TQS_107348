@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "24120469-04c1-4b4d-b007-f785f1d4c8b6",
+		"name": "TQS HW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28375958"
+	},
+	"item": [
+		{
+			"name": "Tickets",
+			"item": []
+		},
+		{
+			"name": "Trips",
+			"item": [
+				{
+					"name": "Add Trip",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/trips/add?numberOfSeatsAvailable=5&numberOfSeatsTotal=5&tripLength=10h15m&date=02-04-2024&time=19:22:59&busNumber=16&basePrice=1.1&origin=1&destination=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"add"
+							],
+							"query": [
+								{
+									"key": "numberOfSeatsAvailable",
+									"value": "5"
+								},
+								{
+									"key": "numberOfSeatsTotal",
+									"value": "5"
+								},
+								{
+									"key": "tripLength",
+									"value": "10h15m"
+								},
+								{
+									"key": "date",
+									"value": "02-04-2024"
+								},
+								{
+									"key": "time",
+									"value": "19:22:59"
+								},
+								{
+									"key": "busNumber",
+									"value": "16"
+								},
+								{
+									"key": "basePrice",
+									"value": "1.1"
+								},
+								{
+									"key": "origin",
+									"value": "1"
+								},
+								{
+									"key": "destination",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Trips",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"list"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "xp@ramos.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Trip",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add City",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Lisbon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/trips/addCity",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"addCity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/listCity",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"listCity"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "xp@ramos.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Currencies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/listCurrencies",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"listCurrencies"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "xp@ramos.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Currency",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/trips/getCurrency/EUR",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"getCurrency",
+								"EUR"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

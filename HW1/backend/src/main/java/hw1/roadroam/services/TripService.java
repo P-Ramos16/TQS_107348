@@ -21,7 +21,7 @@ public class TripService {
         return tripRepository.save(c);
     }
 
-    public List<Trip> listCurrencies() {
+    public List<Trip> listTrips() {
         return tripRepository.findAll();
     }
 
