@@ -1,6 +1,8 @@
 package hw1.roadroam.models;
 
 import java.util.Objects;
+
+import hw1.roadroam.services.CurrencyService;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -23,6 +25,7 @@ public class Ticket {
     private String phone;
     private String email;
     private String creditCard;
+    private String currency;
 
     private Integer numberOfPeople;
     private Double finalPrice;
@@ -32,11 +35,21 @@ public class Ticket {
     @ManyToOne
     private Trip trip;
 
-    @ManyToOne
-    private Currency currency;
-
-
     public Ticket() {}
+
+    public Double calculateFinalPrice(CurrencyService currencyService) {
+        Double regularPrice = this.numberOfPeople * this.trip.getBasePrice();
+
+        //  Increase the price of each ticket by a bit (up to 30%) so that the earlier tickets are cheaper 
+        Double percentageFilledSeats = (double)this.trip.getNumberOfSeatsAvailable() / this.trip.getNumberOfSeatsAvailable();
+        Double percentageToIncrease = percentageFilledSeats / 0.3;
+
+        this.finalPrice = regularPrice + (regularPrice * percentageToIncrease);
+        
+        this.finalPrice *= currencyService.getCurrency(currency).getExchange_rate();
+
+        return this.finalPrice;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -94,11 +107,11 @@ public class Ticket {
         this.trip = trip;
     }
 
-    public Currency getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
 

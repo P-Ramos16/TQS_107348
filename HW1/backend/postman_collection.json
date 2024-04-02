@@ -8,7 +8,120 @@
 	"item": [
 		{
 			"name": "Tickets",
-			"item": []
+			"item": [
+				{
+					"name": "Buy Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets/buy?firstname=Josefino&lastname=Calças&phone=919737828&email=02-04-2024&creditCard=6460504050&numberOfPeople=1&seatNumber=3&trip=1&currency=USD",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets",
+								"buy"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "Josefino"
+								},
+								{
+									"key": "lastname",
+									"value": "Calças"
+								},
+								{
+									"key": "phone",
+									"value": "919737828"
+								},
+								{
+									"key": "email",
+									"value": "02-04-2024"
+								},
+								{
+									"key": "creditCard",
+									"value": "6460504050"
+								},
+								{
+									"key": "numberOfPeople",
+									"value": "1"
+								},
+								{
+									"key": "seatNumber",
+									"value": "3"
+								},
+								{
+									"key": "trip",
+									"value": "1"
+								},
+								{
+									"key": "currency",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tickets/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets",
+								"list"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "xp@ramos.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tickets/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Trips",

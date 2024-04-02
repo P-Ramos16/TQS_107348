@@ -7,13 +7,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.FetchType;
 
 import java.util.Date;
-import java.util.LinkedList;
 
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Entity
 @Table(name = "trips")
@@ -35,7 +33,7 @@ public class Trip {
     private Integer busNumber;
     private Double basePrice;
 
-    private LinkedList<Integer> filledSeats;
+    private Set<Integer> filledSeats;
 
     @ManyToOne
     private City origin;
@@ -124,7 +122,7 @@ public class Trip {
         this.basePrice = basePrice;
     }
 
-    public LinkedList<Integer> getFilledSeats() {
+    public Set<Integer> getFilledSeats() {
         return filledSeats;
     }
 
@@ -140,7 +138,11 @@ public class Trip {
         }
     }
 
-    public void setFilledSeats(LinkedList<Integer> filledSeats) {
+    public void setFilledSeats(Set<Integer> filledSeats) {
         this.filledSeats = filledSeats;
+    }
+
+    public boolean checkSeatIsFilled(Integer seatsNum) {
+        return this.filledSeats.contains(seatsNum);
     }
 }

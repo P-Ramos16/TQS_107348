@@ -22,7 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
 @RestController
 @RequestMapping("/trips")
@@ -45,29 +45,29 @@ public class TripController {
         
         
         if (numberOfSeatsAvailable > numberOfSeatsTotal) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Number of seats available cannot be larger than the number of seats of the bus!");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Number of seats available cannot be larger than the number of seats of the bus!");
         }
 
         if (numberOfSeatsAvailable < 0 || numberOfSeatsTotal < 0) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Number of total seats and available cannot be smaller than zero!");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Number of total seats and available cannot be smaller than zero!");
         }
 
         if (busNumber < 0 || busNumber > 20) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The bus number can only be between 1 and 20!");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The bus number can only be between 1 and 20!");
         }
 
         if (basePrice < 0) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The base price cannot be smaller than 0!");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The base price cannot be smaller than 0!");
         }
 
         City ogCity = cityService.getCity(origin);
         if (ogCity == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Origin city with the provided ID could not be found!");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Origin city with the provided ID could not be found!");
         }
 
         City dtCity = cityService.getCity(destination);
         if (dtCity == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Destination city with the provided ID could not be found!");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Destination city with the provided ID could not be found!");
         }
         
         Trip trip = new Trip();
@@ -80,7 +80,7 @@ public class TripController {
         trip.setTime(time);
         trip.setOrigin(ogCity);
         trip.setDestination(dtCity);
-        trip.setFilledSeats(new LinkedList<Integer>());
+        trip.setFilledSeats(new LinkedHashSet<Integer>());
         
         Trip saved = tripService.save(trip);
         
