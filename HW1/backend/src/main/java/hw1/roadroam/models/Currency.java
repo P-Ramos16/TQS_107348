@@ -6,9 +6,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
-
-import java.util.Date;
 
 @Entity
 @Table(name = "currency")
@@ -31,7 +28,6 @@ public class Currency {
         Currency curr = (Currency) o;
 
         return id.equals(curr.id) && Objects.equals(abreviation, curr.abreviation) && Objects.equals(exchange_rate, curr.exchange_rate);
-
     }
 
     public Long getId() {

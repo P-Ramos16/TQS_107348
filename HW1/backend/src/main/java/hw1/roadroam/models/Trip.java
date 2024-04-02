@@ -8,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 
 import java.util.Date;
+import java.util.LinkedList;
+
+import java.util.NoSuchElementException;
 
 @Entity
 @Table(name = "trips")
@@ -22,6 +25,13 @@ public class Trip {
     private String tripLength;
 
     private Date date;
+    private String time;
+
+    private String busNumber;
+    private Double basePrice;
+
+    private LinkedList<Integer> filledSeats;
+
 
     @ManyToOne
     private City origin;
@@ -87,5 +97,47 @@ public class Trip {
         this.destination = destination;
     }
 
-    
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getBusNumber() {
+        return busNumber;
+    }
+
+    public void setBusNumber(String busNumber) {
+        this.busNumber = busNumber;
+    }
+
+    public Double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(Double basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public LinkedList<Integer> getFilledSeats() {
+        return filledSeats;
+    }
+
+    public void setFilledSteat(int seatID, boolean toFill) {
+        if (toFill) {
+            this.filledSeats.add(seatID);
+        }
+        else {
+            if (this.filledSeats.contains(seatID)) {
+                throw new NoSuchElementException("This seat was not yet filled!");
+            }
+            this.filledSeats.remove(seatID);
+        }
+    }
+
+    public void setFilledSeats(LinkedList<Integer> filledSeats) {
+        this.filledSeats = filledSeats;
+    }
 }
