@@ -141,7 +141,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/trips/add?numberOfSeatsAvailable=5&numberOfSeatsTotal=5&tripLength=10h15m&date=02-04-2024&time=19:22:59&busNumber=16&basePrice=1.1&route=1",
+							"raw": "localhost:8080/trips/add?numberOfSeatsAvailable=5&numberOfSeatsTotal=5&tripLengthTime=10h15m&tripLengthKm=278km&date=02-04-2024&time=19:22:59&busNumber=16&basePrice=1.1&route=1",
 							"host": [
 								"localhost"
 							],
@@ -160,8 +160,12 @@
 									"value": "5"
 								},
 								{
-									"key": "tripLength",
+									"key": "tripLengthTime",
 									"value": "10h15m"
+								},
+								{
+									"key": "tripLengthKm",
+									"value": "278km"
 								},
 								{
 									"key": "date",
@@ -240,7 +244,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/trips/listByRoute?route=1",
+							"raw": "localhost:8080/trips/listByRoute?route=3&currency=EUR",
 							"host": [
 								"localhost"
 							],
@@ -252,7 +256,11 @@
 							"query": [
 								{
 									"key": "route",
-									"value": "1"
+									"value": "3"
+								},
+								{
+									"key": "currency",
+									"value": "EUR"
 								}
 							]
 						}
@@ -274,7 +282,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/trips/addRoute?origin=1&destination=2",
+							"raw": "localhost:8080/trips/addRoute?origin=3&destination=1",
 							"host": [
 								"localhost"
 							],
@@ -286,11 +294,11 @@
 							"query": [
 								{
 									"key": "origin",
-									"value": "1"
+									"value": "3"
 								},
 								{
 									"key": "destination",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
