@@ -6,14 +6,14 @@
     <link rel="icon" type="image/x-icon" href="resources/favicon_rr.png">
     
     <!--  Link the bootstrap stylesheet  -->
-    <link href="resources/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"  href="resources/bootstrap.css">
     <!--  Add JQuery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!--  Add Font Awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  Link the main CSS file  -->
-    <link rel="stylesheet" href="resources/style.css">
-    <link rel="stylesheet" href="resources/colours.css">
+    <link rel="stylesheet" type="text/css" href="resources/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/colours.css">
     <!--  Insert the JQuery scripts  -->
     <script type="text/javascript" src="scripts/navbar.js"></script>
     <script type="text/javascript" src="scripts/search_form.js"></script>
@@ -21,7 +21,7 @@
     <body>
         <div id="navbar"></div>
 
-        <div class="parallax"></div>
+        <div class="parallax" style="height:650px;"></div>
 
         <div class="main_container">
             <h2> Purchase Road Roam Bus Tickets </h2>
@@ -29,15 +29,11 @@
 
             <div class="inner_container">
 
-                <form class="search_form" onsubmit="return search_form();">
+                <form class="search_form" id="search_form" onsubmit="return search_form();">
 
                     <div class="select_box">
                         <select id="origin">
-                            <option value="" selected disabled hidden>Origin</option>
-                            <option>Lisbon</option>
-                            <option>Porto</option>
-                            <option>London</option>
-                            <option>Leiria</option>
+                            <option value="" selected disabled hidden> Origin </option>
                         </select>
                     </div>
                     <div class="arrow_box">
@@ -45,17 +41,13 @@
                         <i class="fa fa-chevron-right" style="left:-15px;"></i>
                     </div>
                     <div class="select_box">
-                        <select id="destination">
-                            <option value="" selected disabled hidden> Destination</option>
-                            <option>Lisbon</option>
-                            <option>Porto</option>
-                            <option>London</option>
-                            <option>Leiria</option>
+                        <select id="destination" disabled>
+                            <option value="" selected disabled hidden> Destination </option>
                         </select>
                       </div>
 
                     <br><br><br><br>
-                    <input type="submit" value="&#xf002; Search"/>
+                    <input type="submit" id="submitbtn" value="&#xf002; Search" disabled/>
                 </form>
             
             </div>

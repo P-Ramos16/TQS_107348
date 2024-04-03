@@ -50,17 +50,20 @@ public class CurrencyService {
             Map<String, Double> conversionRates = (Map<String, Double>) responseMap.get("conversion_rates");
             //this.lastUpdate = ((Number) responseMap.get("time_last_update_unix")).longValue();
 
+
             this.lastUpdate = System.currentTimeMillis() / 1000;
 
-            System.out.println("Currenct Cache Reload: From " + this.lastUpdate + " to " + (this.lastUpdate + this.cacheUpdateTime));
-
-            currencyRepository.deleteAll();
+            System.out.println("Current Cache Reload: From " + this.lastUpdate + " to " + (this.lastUpdate + this.cacheUpdateTime));
 
             for (Map.Entry<String, Double> set :conversionRates.entrySet()) {
                 String abre = set.getKey();
-                Currency curr = new Currency();
+                Currency curr = getCurrency(abre);
 
-                curr.setAbreviation(abre);
+                if (curr == null) {
+                    curr = new Currency();
+                    curr.setAbreviation(abre);
+                }
+
                 curr.setExchange_rate(set.getValue());
 
                 currencyRepository.save(curr);

@@ -25,6 +25,10 @@ public class TripService {
         return tripRepository.findAll();
     }
 
+    public List<Trip> listTripsByRouteID(Long route) {
+        return tripRepository.findByRouteId(route);
+    }
+
     public Trip getTrip(Long id) {
         Optional<Trip> trip = tripRepository.findById(id);
         if (trip.isPresent()) {

@@ -23,7 +23,8 @@ public class Trip {
 
     private Integer numberOfSeatsAvailable;
     private Integer numberOfSeatsTotal;
-    private String tripLength;
+    private String tripLengthTime;
+    private String tripLengthKm;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date date;
@@ -36,9 +37,7 @@ public class Trip {
     private Set<Integer> filledSeats;
 
     @ManyToOne
-    private City origin;
-    @ManyToOne
-    private City destination;
+    private Route route;
 
     public Trip() {}
 
@@ -66,12 +65,20 @@ public class Trip {
         this.numberOfSeatsTotal = numberOfSeatsTotal;
     }
 
-    public String getTripLength() {
-        return tripLength;
+    public String getTripLengthTime() {
+        return tripLengthTime;
     }
 
-    public void setTripLength(String tripLength) {
-        this.tripLength = tripLength;
+    public void setTripLengthTime(String tripLengthTime) {
+        this.tripLengthTime = tripLengthTime;
+    }
+
+    public String getTripLengthKm() {
+        return tripLengthKm;
+    }
+
+    public void setTripLengthKm(String tripLengthKm) {
+        this.tripLengthKm = tripLengthKm;
     }
 
     public Date getDate() {
@@ -82,20 +89,12 @@ public class Trip {
         this.date = date;
     }
 
-    public City getOrigin() {
-        return origin;
+    public Route getRoute() {
+        return route;
     }
 
-    public void setOrigin(City origin) {
-        this.origin = origin;
-    }
-
-    public City getDestination() {
-        return destination;
-    }
-
-    public void setDestination(City destination) {
-        this.destination = destination;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
     public String getTime() {

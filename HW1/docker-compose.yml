@@ -2,93 +2,32 @@ version: '3.9'
 
 services:
 
-  redirect-nginx:
-    image: nginx:latest
-    ports:
-      - "28015:81"
-    volumes:
-      - ./backend/redirect_nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - api-instance
-    networks:
-      - request_network
-
-  mongo-db:
-    image: mongo:latest
-    networks:
-      - backend_network
-    restart: always
-    ports:
-      - '27017:27017'  
-    logging:
-        options:
-            max-size: 1g
-    volumes: 
-      - mongodbdata:/data/db
-      - ./backend/mongodb/init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-    command: mongod --auth
-
-  mariadb:
-    networks:
-      - backend_network
-    restart: always
-    ports:
-      - '3306:3306'
-    logging:
-        options:
-            max-size: 1g
-    environment:
-        - MYSQL_ROOT_PASSWORD=dsd_mdb
-        - MYSQL_DATABASE=config_db
-        - MYSQL_USER=dsd_mdb_user
-        - MYSQL_PASSWORD=dsd_mdb
-    image: mariadb
-    hostname: mariadb
-    volumes:
-      - ./backend/mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  api-instance:
-    image: dsdua/backend:github-workflow-docker-images
-    depends_on:
-      - mongo-db
-      - mariadb
-    volumes:
-      - file-bind:/resources/api_files
-      - ./backend/api:/dsd-api
-    environment:
-      PORT: "8080"
-      adm_pass : "dsdua"
-    networks:
-      - backend_network
-      - request_network
-    ports:
-      - '8080-8099:8080'
-    links:
-      - mongo-db
-    logging:
-      driver : "json-file"
-
-  load-balancer:
-    build:
-      context: ./backend/nginx
+  frontend:
+    build: 
+      context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - 8000:80
-      - 443:443
-    depends_on:
-      - api-instance
+    container_name: 'frontend'
+    volumes:
+      - ./frontend:/frontend
     networks:
-     - request_network
-
-  app:
-    image: dsdua/frontend:github-workflow-docker-images
-    depends_on:
-      - api-instance
-    networks:
-      - frontend_network
+      - backend_network
+      - request_network
     ports:
-      - '9090:9090'
-      - '9091:3000'
+      - '3000:80'
+    depends_on:
+      - backend
+  
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: 'backend'
+    volumes:
+      - ./backend:/backend
+    networks:
+      - backend_network
+    ports:
+      - '8080:8080'
 
 
 networks:
@@ -96,17 +35,3 @@ networks:
 
   backend_network:
     driver: bridge
-  
-  frontend_network:
-    driver: bridge
-
-volumes:
-  exclude:
-  mongodbdata:
-    driver: local
-  file-bind:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./backend/uploaded_files

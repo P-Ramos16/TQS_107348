@@ -13,4 +13,5 @@ public interface TripRepo extends JpaRepository<Trip, Long> {
 
     public List<Trip> findAll();
 
+    public List<Trip> findByRouteId(Long route);
 }
