@@ -7,6 +7,7 @@ import hw1.roadroam.repositories.CurrencyRepo;
 
 import java.util.List;
 import java.util.Optional;
+import jakarta.annotation.PostConstruct;
 
 
 import com.google.gson.Gson;
@@ -32,6 +33,7 @@ public class CurrencyService {
         this.currencyRepository = currencyRepository;
     }
 
+    @PostConstruct
     public void reloadCache() {
         OkHttpClient client = new OkHttpClient();
         String url = "https://v6.exchangerate-api.com/v6/0642c2c8980875e56607558a/latest/USD";
@@ -51,7 +53,13 @@ public class CurrencyService {
             //this.lastUpdate = ((Number) responseMap.get("time_last_update_unix")).longValue();
 
 
-            this.lastUpdate = System.currentTimeMillis() / 1000;
+            Long currTime = System.currentTimeMillis() / 1000;
+
+            if (currTime <= this.lastUpdate + this.cacheUpdateTime) {
+                return;
+            }
+
+            this.lastUpdate = currTime;
 
             System.out.println("Current Cache Reload: From " + this.lastUpdate + " to " + (this.lastUpdate + this.cacheUpdateTime));
 

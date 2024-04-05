@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -16,6 +17,7 @@ public class Currency {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique=true)
     private String abreviation;
     private Double exchange_rate;
 

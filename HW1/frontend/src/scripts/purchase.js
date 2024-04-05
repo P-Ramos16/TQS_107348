@@ -1,45 +1,6 @@
-window.onload = function() {
-  reloadTrips("USD");
+window.onload = function() {};
 
-  // Creating a XHR object
-  let xhr2 = new XMLHttpRequest();
-  url = "http://localhost:8080/trips/listCurrencies";
-
-  // open a connection
-  xhr2.open("GET", url, true);
-
-  // Set the request header i.e. which type of content you are sending
-  xhr2.setRequestHeader("Content-Type", "application/json");
-  
-  xhr2.addEventListener("readystatechange", function() {
-      if (xhr2.readyState == 4 && xhr2.status == 200) {
-        returnedData = xhr2.responseText;
-        var data = JSON.parse(returnedData);
-
-        var outHTML = "";
-        var i;
-        for(i = 0; i < data.length; i++) {
-          outHTML += "<option value=" + data[i].abreviation + "> " + data[i].abreviation + " </option>";
-        }
-
-        document.getElementById("currency").innerHTML = outHTML;
-      }
-      else if (xhr2.status == 0) {
-        alert("No API connection could be established!");
-      }
-      else if (xhr2.readyState == 4) {
-        alert("Code " + xhr2.status + ": " + xhr2.statusText);
-      }
-  });
-  xhr2.send();
-
-  $('#currency').change(function() {
-    curr = this.value
-    reloadTrips(curr);
-  });
-};
-
-function reloadTrips(currency) {
+function submitTicket(currency) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const route = urlParams.get('route')
@@ -87,16 +48,4 @@ function reloadTrips(currency) {
       }
   });
   xhr.send();
-};
-
-
-function select_trip(tripID) {
-  var currency = document.getElementById("currency").value;
-
-  if (currency === null || currency === "") {
-    currency = "USD";
-  }
-
-  window.location.href = "http://localhost:3000/purchase.html?trip=" + tripID + "&currency=" + currency;
-  return false;
 };
