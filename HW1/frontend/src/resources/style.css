@@ -111,6 +111,17 @@ h4 {
     color: var(--primary);
 }
 
+.ticketPrice {
+    width: 100%;
+    background-color: var(--layer-2);
+    border: 1px solid var(--layer-1);
+    border-radius: 15px;
+    padding: 12px 8px 0px 8px;
+    color: var(--main-bg);
+    text-align: center;
+    margin-bottom: 10vh;
+}
+
 .select_box {
     top: 1vh;
     margin: 0px 0px 1vw 1vw;
@@ -128,8 +139,50 @@ h4 {
     left: -10vw!important;
 }
 
-  
-.select_box select, input {
+.scrolldiv {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 16.75vh;
+    width: 100%!important;
+}
+
+.tdLabel, .tdValue {
+    overflow: hidden;
+}
+
+.purchaseBtn {
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px;
+    width: 28vw;
+    border: none;
+    left: 0px!important;
+    font-size: 48px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    outline: none;
+    transition: all 250ms;
+    text-align: center;
+}
+
+
+.returnBtn {
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px;
+    width: 76vw;
+    border: none;
+    left: 0px!important;
+    font-size: 24px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    outline: none;
+    transition: all 250ms;
+    text-align: center;
+    font-family: FontAwesome;
+}
+
+.select_box select, .select_box input, input {
     border-radius: 5px;
     background-color: var(--primary);
     color: white;
@@ -142,20 +195,118 @@ h4 {
     transition: all 250ms;
 }
 
-.select_box_curr select, select_box_curr input {
+.select_box_curr select, .select_box_curr input {
     padding: 16px 16px 12px 16px!important;
     width: 7.5vw!important;
     float: right;
 }
 
-.select_box select:hover, input:hover {
+input:hover, .select_box select:hover, .select_box input:hover, .purchaseBtn:hover, .returnBtn:hover {
     background-color: var(--primary-hover);
     cursor: pointer;
 }
 
-.select_box select option {
+.select_box select option, .purchaseBtn {
     padding: 30px;
     font-family: FontAwesome;
+}
+
+.formsDiv {
+    margin-bottom: 1vh;
+    min-height: 47.5vh;
+}
+
+.purchase_form {
+    top: 1vh;
+    margin: 0.25vw;
+    position: relative;
+    width: 29vw;
+    left: 1.5vw;
+}
+
+.purchase_form label {
+    border-radius: 5px;
+    background-color: var(--layer-2);
+    color: white;
+    padding: 12px;
+    width: 10vw;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    outline: 3px solid var(--layer-2);
+    transition: all 250ms;
+    top: -3px!important;
+    position: relative;
+}
+
+.purchase_form input, .purchase_form select {
+    border-radius: 5px;
+    background-color: var(--primary-disabled);
+    color: black;
+    padding: 12px;
+    width: 15vw;
+    outline: 1px solid var(--layer-1);
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    transition: all 250ms;
+    position: relative;
+    left: 1vw!important;
+}
+
+.purchase_form select:hover, .purchase_form input:hover {
+    background-color: var(--primary);
+    cursor: pointer;
+}
+
+.purchase_form select option {
+    padding: 30px;
+    font-family: FontAwesome;
+}
+
+.seat {
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: black;
+    padding: 2px;
+    width: 5vw;
+    outline: 1px solid var(--layer-1);
+    font-size: 18px;
+    transition: all 250ms;
+    position: relative;
+    left: 1.2vw!important;
+    margin-left: 0.25vw;
+}
+
+.seat:hover {
+    background-color: var(--primary-hover);
+    cursor: pointer;
+}
+
+.seatFilled {
+    border-radius: 5px;
+    background-color: var(--secondary)!important;
+    color: black;
+    padding: 2px;
+    width: 5vw;
+    outline: 1px solid var(--secondary);
+    font-size: 20px;
+    transition: all 250ms;
+    position: relative;
+    left: 1.2vw!important;
+    margin-left: 0.25vw;
+}
+
+.seatFilled:hover {
+    cursor: auto!important;
+}
+
+.seatmargin {
+    margin-left: 2vw;
+}
+
+.seatrow {
+    margin-bottom: 0.25vw;
 }
 
 select {
@@ -215,6 +366,9 @@ input {
     top: 7vh;
 }
 
+.infotable td:first-child {
+    text-align: right!important;
+}
 
 
 table {

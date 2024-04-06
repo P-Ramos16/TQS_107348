@@ -57,10 +57,29 @@
         <div class="main_container" style="width:40vw;">
             <h2> Acquired Road Roam Bus Tickets </h2>
             <h4> List of all aquired tickets </h4>
-            <div class="inner_container" style="width:38vw;">
-                <div class="ticket_list">
-                    <h3> You have no tickets purchased yet! </h3>
-                </div>
+            <div class="inner_container scrolldiv" style="width:38vw;">
+
+                <table class="ticketstable"> 
+                    <colgroup>
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 30%;">
+                        <col span="1" style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="tdLabel"> ID </th>
+                            <th class="tdLabel"> Origin </th>
+                            <th class="tdLabel"> Destination </th>
+                            <th class="tdLabel"> Price </th>
+                            <th class="tdLabel"> Ver </th>
+                        </tr>
+                    </thead> 
+                    <tbody id="ticketsList"> 
+                    </tbody> 
+                </table>
+                <!-- <h3> You have no tickets purchased yet! </h3> -->
             </div>
         </div>
     </body>

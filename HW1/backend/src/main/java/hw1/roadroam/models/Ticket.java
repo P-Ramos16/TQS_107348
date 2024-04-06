@@ -48,6 +48,8 @@ public class Ticket {
         
         this.finalPrice *= currencyService.getCurrency(currency).getExchange_rate();
 
+        this.finalPrice = Math.floor(this.finalPrice * 100) / 100;
+        
         return this.finalPrice;
     }
 

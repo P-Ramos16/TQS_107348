@@ -40,11 +40,12 @@ public class TicketController {
     }
 
 
-    @PostMapping("/buy") public ResponseEntity<Ticket> buyTicket(@RequestParam String firstname, @RequestParam String lastname,
-                                                                @RequestParam String phone, @RequestParam String email,
-                                                                @RequestParam String creditCard, @RequestParam Integer numberOfPeople,
-                                                                @RequestParam Integer seatNumber,
-                                                                @RequestParam Long trip, @RequestParam String currency) {
+    @PostMapping("/buy") 
+    public ResponseEntity<Ticket> buyTicket(@RequestParam String firstname, @RequestParam String lastname,
+                                            @RequestParam String phone, @RequestParam String email,
+                                            @RequestParam String creditCard, @RequestParam Integer numberOfPeople,
+                                            @RequestParam Integer seatNumber,
+                                            @RequestParam Long trip, @RequestParam String currency) {
 
         if (firstname == null || firstname.equals("") || lastname == null || lastname.equals("") || 
             phone == null || phone.equals("") || email == null || email.equals("") || creditCard == null || creditCard.equals("")) {
@@ -120,8 +121,7 @@ public class TicketController {
 
         tripService.save(tripObj);
 
-        HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(saved, status);
+        return ResponseEntity.ok().body(saved);
     }
 
     @GetMapping(path = "/list",  produces = "application/json")
@@ -138,6 +138,23 @@ public class TicketController {
         }
         
         return ResponseEntity.ok().body(ticket);
+    }
+
+    @GetMapping(path = "/getPrice", produces = "application/json")
+    public ResponseEntity<Double> getTicketPriceByValues(@RequestParam Long trip, @RequestParam Integer numpeople, @RequestParam String currency) {
+        
+        Trip tripObj = tripService.getTrip(trip);
+        if (tripObj == null) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "A trip with the provided ID could not be found!");
+        }
+
+        Currency currencyObj = currencyService.getCurrency(currency);
+        if (currencyObj == null) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "A Currency with the provided abreviation could not be found!");
+        }
+        Double price = Math.floor(tripObj.getBasePrice() * numpeople * currencyObj.getExchange_rate() * 100) / 100;
+
+        return ResponseEntity.ok().body(price);
     }
 
 }

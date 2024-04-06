@@ -99,6 +99,7 @@ function select_trip(tripID) {
     currency = "USD";
   }
 
-  window.location.href = "http://localhost:3000/purchase.html?trip=" + tripID + "&currency=" + currency;
+  //window.location.href = "http://localhost:3000/purchase.html?trip=" + tripID + "&currency=" + currency;
+  window.location.href = "purchase.html?trip=" + tripID + "&currency=" + currency;
   return false;
 };
