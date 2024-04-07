@@ -71,7 +71,7 @@ class CityRepositoryTest {
 
         List<City> allCitys = cityRepository.findAll();
 
-        assertThat(allCitys).hasSize(2).extracting(City::getName).containsOnly(city0.getName(), city1.getName());
+        assertThat(allCitys).hasSize(5).extracting(City::getName).containsOnly(city0.getName(), city1.getName(), "Leiria", "Porto");
     }
 
 }

@@ -14,9 +14,7 @@ services:
       - request_network
     ports:
       - '3000:80'
-    depends_on:
-      - backend
-  
+
   backend:
     build: 
       context: ./backend
@@ -28,7 +26,8 @@ services:
       - backend_network
     ports:
       - '8080:8080'
-
+    depends_on:
+      - frontend
 
 networks:
   request_network:

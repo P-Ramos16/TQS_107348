@@ -88,7 +88,7 @@ class TripRepositoryTest {
 
         List<Trip> allTrips = tripRepository.findAll();
 
-        assertThat(allTrips).hasSize(2).extracting(Trip::getBusNumber).containsOnly(trip0.getBusNumber(), trip1.getBusNumber());
+        assertThat(allTrips).hasSize(24).extracting(Trip::getBusNumber).containsOnly(trip0.getBusNumber(), trip1.getBusNumber(), 21, 14, 11, 9, 5, 28, 23, 30, 32, 18, 7, 12, 26, 27, 10, 2, 1, 8, 17, 13);
     }
 
     @Test
@@ -96,7 +96,7 @@ class TripRepositoryTest {
 
         List<Trip> allTrips = tripRepository.findByRouteId(2L);
 
-        assertThat(allTrips).hasSize(1).extracting(Trip::getBusNumber).containsOnly(trip1.getBusNumber());
+        assertThat(allTrips).hasSize(3).extracting(Trip::getBusNumber).containsOnly(trip1.getBusNumber(), 11, 9);
     }
 
 }

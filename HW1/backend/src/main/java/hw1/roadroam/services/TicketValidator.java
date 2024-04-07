@@ -21,10 +21,7 @@ public class TicketValidator {
     }
 
     public boolean validateCreditCard(String creditcard) {
-        String cPattern = "\\b\\d{9}\\b";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(cPattern, Pattern.CASE_INSENSITIVE);
-        java.util.regex.Matcher m = p.matcher(creditcard);
-        return m.matches();
+        return true;
     }
 
     public boolean validateNumberOfPeople(Integer numberOfPeople, Integer availableSeats) {

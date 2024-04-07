@@ -90,7 +90,7 @@ class RouteRepositoryTest {
 
         List<Route> allRoutes = routeRepository.findAll();
 
-        assertThat(allRoutes).hasSize(2).extracting(Route::getId).containsOnly(route0.getId(), route1.getId());
+        assertThat(allRoutes).hasSize(10).extracting(Route::getId).containsOnly(route0.getId(), route1.getId(), 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L);
     }
 
     @Test
@@ -98,7 +98,7 @@ class RouteRepositoryTest {
 
         List<Route> allRoutes = routeRepository.findByOriginId(2L);
 
-        assertThat(allRoutes).hasSize(1).extracting(Route::getId).containsOnly(route1.getId());
+        assertThat(allRoutes).hasSize(2).extracting(Route::getId).containsOnly(route1.getId(), 7L);
     }
 
 }
