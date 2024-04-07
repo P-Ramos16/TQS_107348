@@ -17,6 +17,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -31,15 +34,23 @@ public class CurrencyService {
     //  Seconds for cache to become invalid
     public Integer cacheUpdateTime = 30;
 
+    private static final Logger logger = LoggerFactory.getLogger(CurrencyService.class);
+
     @PostConstruct
     public void reloadCache() {
+        logger.info("Attempting a Currency cache refresh!");
+
         OkHttpClient client = new OkHttpClient();
         String url = "https://v6.exchangerate-api.com/v6/0642c2c8980875e56607558a/latest/USD";
 
         Request request = new Request.Builder().url(url).build();
 
+
         try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+            if (!response.isSuccessful()) {
+                logger.error("Unexpected code at cache refresh! Aborting refresh. Response: {}", response);
+                throw new IOException("Unexpected code " + response);
+            }
 
             // Parse JSON
             Gson gson = new Gson();
@@ -54,6 +65,7 @@ public class CurrencyService {
             Long currTime = System.currentTimeMillis() / 1000;
 
             if (currTime <= this.lastUpdate + this.cacheUpdateTime) {
+                logger.warn("Another cache refresh was already taking place!");
                 return;
             }
 
@@ -74,8 +86,11 @@ public class CurrencyService {
 
                 currencyRepository.save(curr);
             }
+
+            logger.info("Successful Currency cache refresh at epoch {}! Cache will be valid until {}", this.lastUpdate, (this.lastUpdate + this.cacheUpdateTime));
         } 
         catch (IOException e) {
+            logger.error("Could not reach the Currency API! Aborting refresh.");
             e.printStackTrace();
         }
 

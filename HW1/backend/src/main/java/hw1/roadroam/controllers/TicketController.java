@@ -23,6 +23,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Date;
 
@@ -39,6 +42,7 @@ public class TicketController {
     private CurrencyService currencyService;
 
     private static TicketValidator tValidator = new TicketValidator();
+    private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
 
     @PostMapping("/buy") 
     public ResponseEntity<Ticket> buyTicket(@RequestParam String firstname, @RequestParam String lastname,
@@ -124,6 +128,8 @@ public class TicketController {
         }
 
         tripService.save(tripObj);
+
+        logger.info("A ticket with id {} was sucessfully persisted!", saved.getId());
 
         return ResponseEntity.ok().body(saved);
     }

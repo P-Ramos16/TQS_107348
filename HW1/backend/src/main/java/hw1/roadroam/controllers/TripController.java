@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.server.ResponseStatusException;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Date;
@@ -45,6 +47,8 @@ public class TripController {
     private RouteService routeService;
     @Autowired
     private CurrencyService currencyService;
+
+    private static final Logger logger = LoggerFactory.getLogger(TripController.class);
 
     @PostMapping("/add") public ResponseEntity<Trip> createTrip(@RequestParam Integer numberOfSeatsAvailable, @RequestParam Integer numberOfSeatsTotal,
                                                                 @RequestParam String tripLengthTime, @RequestParam String tripLengthKm, 
@@ -86,6 +90,8 @@ public class TripController {
         trip.setFilledSeats(new LinkedHashSet<Integer>());
         
         Trip saved = tripService.save(trip);
+
+        logger.info("A trip with id {} was sucessfully persisted!", saved.getId());
         
         HttpStatus status = HttpStatus.CREATED;
         return new ResponseEntity<>(saved, status);
@@ -154,6 +160,8 @@ public class TripController {
         HttpStatus status = HttpStatus.CREATED;
         Route saved = routeService.save(route);
 
+        logger.info("A route with id {} was sucessfully persisted!", saved.getId());
+
         return new ResponseEntity<>(saved, status);
     }
 
@@ -208,6 +216,8 @@ public class TripController {
     @PostMapping("/addCity") public ResponseEntity<City> createCity(@RequestBody City oneCity) {
         HttpStatus status = HttpStatus.CREATED;
         City saved = cityService.save(oneCity);
+
+        logger.info("A city with id {} was sucessfully persisted!", saved.getId());
         return new ResponseEntity<>(saved, status);
     }
 
