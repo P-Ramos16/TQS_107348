@@ -1,4 +1,4 @@
-package hw1.roadroam;
+package hw1.roadroam.frontendTests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

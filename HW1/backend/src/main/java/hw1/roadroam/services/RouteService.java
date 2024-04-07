@@ -13,11 +13,7 @@ import java.util.Optional;
 public class RouteService {
 
     @Autowired
-    final RouteRepo routeRepository;
-
-    public RouteService(RouteRepo routeRepository) {
-        this.routeRepository = routeRepository;
-    }
+    private RouteRepo routeRepository;
 
     public Route save(Route c) {
         return routeRepository.save(c);

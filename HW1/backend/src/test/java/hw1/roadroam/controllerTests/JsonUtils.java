@@ -1,4 +1,4 @@
-package hw1.roadroam;
+package hw1.roadroam.controllerTests;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

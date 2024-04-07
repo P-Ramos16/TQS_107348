@@ -1,5 +1,6 @@
 package hw1.roadroam.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hw1.roadroam.models.Currency;
@@ -23,15 +24,12 @@ import java.util.Map;
 @Service
 public class CurrencyService {
 
-    final CurrencyRepo currencyRepository;
+    @Autowired
+    private CurrencyRepo currencyRepository;
     //  Epoch time from the last update
     private long lastUpdate = 0;
     //  Seconds for cache to become invalid
     private Integer cacheUpdateTime = 30;
-
-    public CurrencyService(CurrencyRepo currencyRepository) {
-        this.currencyRepository = currencyRepository;
-    }
 
     @PostConstruct
     public void reloadCache() {

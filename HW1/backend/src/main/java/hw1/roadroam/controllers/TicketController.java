@@ -1,5 +1,6 @@
 package hw1.roadroam.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,16 +30,12 @@ import java.util.Date;
 @RequestMapping("/tickets")
 public class TicketController {
 
-    private final TicketService ticketService;
-    private final TripService tripService;
-    private final CurrencyService currencyService;
-
-    public TicketController(TicketService tiservice, TripService trservice, CurrencyService cservice) {
-        this.ticketService = tiservice;
-        this.tripService = trservice;
-        this.currencyService = cservice;
-    }
-
+    @Autowired
+    private TicketService ticketService;
+    @Autowired
+    private TripService tripService;
+    @Autowired
+    private CurrencyService currencyService;
 
     @PostMapping("/buy") 
     public ResponseEntity<Ticket> buyTicket(@RequestParam String firstname, @RequestParam String lastname,

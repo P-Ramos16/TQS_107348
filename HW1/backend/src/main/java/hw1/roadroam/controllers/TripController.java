@@ -1,5 +1,6 @@
 package hw1.roadroam.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,17 +37,14 @@ import java.util.LinkedList;
 @RequestMapping("/trips")
 public class TripController {
 
-    private final TripService tripService;
-    private final CityService cityService;
-    private final RouteService routeService;
-    private final CurrencyService currencyService;
-
-    public TripController(TripService tservice, CityService ciservice, RouteService rservice, CurrencyService cuservice) {
-        this.tripService = tservice;
-        this.cityService = ciservice;
-        this.routeService = rservice;
-        this.currencyService = cuservice;
-    }
+    @Autowired
+    private TripService tripService;
+    @Autowired
+    private CityService cityService;
+    @Autowired
+    private RouteService routeService;
+    @Autowired
+    private CurrencyService currencyService;
 
     @PostMapping("/add") public ResponseEntity<Trip> createTrip(@RequestParam Integer numberOfSeatsAvailable, @RequestParam Integer numberOfSeatsTotal,
                                                                 @RequestParam String tripLengthTime, @RequestParam String tripLengthKm, 

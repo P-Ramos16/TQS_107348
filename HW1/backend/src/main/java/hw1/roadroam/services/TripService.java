@@ -5,17 +5,16 @@ import org.springframework.stereotype.Service;
 import hw1.roadroam.models.Trip;
 import hw1.roadroam.repositories.TripRepo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TripService {
 
-    final TripRepo tripRepository;
-
-    public TripService(TripRepo tripRepository) {
-        this.tripRepository = tripRepository;
-    }
+    @Autowired
+    private TripRepo tripRepository;
 
     public Trip save(Trip c) {
         return tripRepository.save(c);

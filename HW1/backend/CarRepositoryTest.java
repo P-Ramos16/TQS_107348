@@ -1,4 +1,4 @@
-package hw1.roadroam;
+package hw1.roadroam.repositoryTests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

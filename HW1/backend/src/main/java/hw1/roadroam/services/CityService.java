@@ -13,7 +13,7 @@ import java.util.Optional;
 public class CityService {
 
     @Autowired
-    final CityRepo cityRepository;
+    private CityRepo cityRepository;
 
     public CityService(CityRepo cityRepository) {
         this.cityRepository = cityRepository;
