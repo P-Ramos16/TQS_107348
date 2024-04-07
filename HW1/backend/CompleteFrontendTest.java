@@ -31,14 +31,14 @@ class CompleteFrontendTest {
         driver.manage().timeouts();
     }
 
-    @Test
+    /* @Test
     static void purchaseFlight() {
         //Create object of HomePage Class
         HomePage home = new HomePage(driver);
         home.selectOnOriginSelectBox(2);
         home.selectOnDestinationSelectBox(2);
         home.clickOnFindFlightsButton();
-/* 
+
         //Create object of DeveloperPortalPage
         ChooseFlightPage flightPage = new ChooseFlightPage(driver);
 
@@ -70,12 +70,12 @@ class CompleteFrontendTest {
         assertThat(flightForm.assertTotalCost(), is(true));
 
         //Click on join
-        flightForm.clickPurchaseFlightButton();  */
+        flightForm.clickPurchaseFlightButton();  
         assertTrue(true);
     }
 
     @AfterAll
     static void close(){
         driver.close();
-    }
+    } */
 }

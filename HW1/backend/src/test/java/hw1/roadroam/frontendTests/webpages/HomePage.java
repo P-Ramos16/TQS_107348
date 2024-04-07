@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.By;
+import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
@@ -14,13 +16,13 @@ public class HomePage {
     //private static String PAGE_URL="https://localhost:3000";
 
     //Locators
-    @FindBy(xpath = "//*[@id=\"origin\"]")
+    @FindBy(id = "origin")
     private WebElement originSelectBox;
 
-    @FindBy(xpath = "//*[@id=\"destination\"]")
+    @FindBy(id = "destination")
     private WebElement destinationSelectBox;
 
-    @FindBy(xpath = "/html/body/div[3]/form/div/input")
+    @FindBy(id = "submitbtn")
     private WebElement findTripsButton;
 
     //Constructor
@@ -31,17 +33,31 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickOnFindFlightsButton(){
+    public void clickOnSearchTripsButton(){
         findTripsButton.click();
     }
 
-    public void selectOnOriginSelectBox(int index){
+    public void selectOnOriginSelectBox(Integer index){
         Select drop = new Select(originSelectBox);
         drop.selectByIndex(index);  
     }
 
-    public void selectOnDestinationSelectBox(int index){
+    public void selectOnRouteSelectBox(Integer index){
         Select drop = new Select(destinationSelectBox);
         drop.selectByIndex(index);  
+    }
+
+    public String getHeaderText(){
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+
+        WebElement headerText = driver.findElement(By.id("headertext"));
+        return headerText.getText();  
     }
 }

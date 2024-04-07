@@ -232,12 +232,6 @@ function purchaseTicket() {
         returnedData = xhr1.responseText;
         var data = JSON.parse(returnedData);
 
-        console.log(data);
-
-        if (confirm(data) != true) {
-          return 0;
-        } 
-
         //window.location.href = "http://localhost:3000/receipt.html?trip=" + tripID + "&currency=" + currency;
         window.location.href = "receipt.html?ticket=" + data.id;
         return false;

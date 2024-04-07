@@ -5,118 +5,99 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Alert;
+
+import java.time.Duration;
+import java.lang.Thread;
 
 public class TicketDetails {
     private WebDriver driver;
 
-    @FindBy(tagName = "h2")
-    WebElement heading;
+    //Page URL
+    private static String PAGE_URL="file:///home/frostywolf/Documents/GitReps/TQS_107348/HW1/frontend/src/purchase.html";
+    //private static String PAGE_URL="https://localhost:3000";
 
-    @FindBy(id = "inputName")
-    WebElement name;
+    @FindBy(id = "fname")
+    WebElement fname;
 
-    @FindBy(id = "address")
-    WebElement address;
+    @FindBy(id = "lname")
+    WebElement lname;
 
-    @FindBy(id="city")
-    WebElement city;
+    @FindBy(id = "phone")
+    WebElement phone;
 
-    @FindBy(id = "state")
-    WebElement state;
+    @FindBy(id="email")
+    WebElement email;
 
-    @FindBy(id = "zipCode")
-    WebElement zipcode;
-
-    @FindBy(id = "cardType")
-    WebElement cardtype;
-
-    @FindBy(id = "creditCardNumber")
+    @FindBy(id = "creditcard")
     WebElement creditcard;
 
-    @FindBy(id = "creditCardMonth")
-    WebElement cardmonth;
+    @FindBy(id = "npeople")
+    WebElement npeople;
 
-    @FindBy(id = "creditCardYear")
-    WebElement cardyear;
-
-    @FindBy(id = "nameOnCard")
-    WebElement cardname;
-
-    @FindBy(xpath = "/html/body/div[2]/form/div[11]/div/input")
-    private WebElement purchaseFlightButton;
-
-    @FindBy(xpath = "/html/body/div[2]/p[5]/em")
-    private WebElement totalCost;
+    @FindBy(id = "purchasebutton")
+    private WebElement purchaseTicketButton;
 
     //Constructor
-    public TicketDetails(WebDriver ndriver){
+    public TicketDetails(WebDriver ndriver, Integer trip, String currency){
         driver=ndriver;
-
+        driver.get(PAGE_URL + "?trip=" + trip + "&currency=" + currency);
         //Initialise Elements
         PageFactory.initElements(driver, this);
     }
 
-    public void setName(String newname){
-        name.clear();
-        name.sendKeys(newname);
+    public void setFname(String name){
+        fname.clear();
+        fname.sendKeys(name);
     }
 
-    public void setAddress(String newaddress){
-        address.clear();
-        address.sendKeys(newaddress);
+    public void setLname(String name){
+        lname.clear();
+        lname.sendKeys(name);
+    }
+    
+    public void setPhone(String ph){
+        phone.clear();
+        phone.sendKeys(ph);
+    }
+    
+    public void setEmail(String mail){
+        email.clear();
+        email.sendKeys(mail);
     }
 
-    public void setCity(String newcity){
-        city.clear();
-        city.sendKeys(newcity);
-    }
-
-    public void setState(String newstate){
-        state.clear();
-        state.sendKeys(newstate);
-    }
-
-    public void setZipCode(String newzipcode){
-        zipcode.clear();
-        zipcode.sendKeys(newzipcode);
-    }
-
-    public void setCardType(int index){
-        Select drop = new Select(cardtype);
+    public void setCreditCard(int index){
+        Select drop = new Select(creditcard);
         drop.selectByIndex(index); 
     }
-
-    public void setCreditCard(String newcreditcard){
-        creditcard.clear();
-        creditcard.sendKeys(newcreditcard);
+    
+    public void setNumPeople(String num){
     }
 
-    public void setCardMonth(String newcardmonth){
-        cardmonth.clear();
-        cardmonth.sendKeys(newcardmonth);
+    public void setSeat(int index) {
+        WebElement seat = driver.findElement(By.id("seat" + index));
+        seat.click();
     }
 
-    public void setCardYear(String newcardyear){
-        cardyear.clear();
-        cardyear.sendKeys(newcardyear);
+    public void clickPurchaseTicketButton(){
+        purchaseTicketButton.click();
+        //Wait for the alert to be displayed
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
     }
 
-    public void setCardName(String newcardname){
-        cardname.clear();
-        cardname.sendKeys(newcardname);
-    }
+    public String getTotalCost(){
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-    public void clickPurchaseFlightButton(){
-        purchaseFlightButton.click();
-    }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        WebElement finalPrice = driver.findElement(By.id("ticket_price"));
 
-    public boolean isPageOpened(){
-        //Assertion
-        return heading.getText().toString().contains("Your flight from TLV to SFO has been reserved.");
-    }
-
-    public boolean assertTotalCost(){
-        //Assertion
-        return totalCost.getText().toString().contains("914.76");
+        return finalPrice.getText();
     }
 }
