@@ -2,8 +2,6 @@ package hw1.roadroam.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import hw1.roadroam.models.Route;
 
@@ -16,9 +14,6 @@ public interface RouteRepo extends JpaRepository<Route, Long> {
     public Optional<Route> findById(Long id);
 
     public List<Route> findAll();
-
-    //@Query("SELECT r FROM routes r WHERE r.origin = :origin")
-    //public List<Route> findByOriginID(@Param("origin") Long origin);
 
     public List<Route> findByOriginId(Long origin);
 }

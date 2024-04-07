@@ -9,6 +9,7 @@ import hw1.roadroam.models.Ticket;
 import hw1.roadroam.models.Trip;
 import hw1.roadroam.models.Currency;
 import hw1.roadroam.services.TicketService;
+import hw1.roadroam.services.TicketValidator;
 import hw1.roadroam.services.TripService;
 import hw1.roadroam.services.CurrencyService;
 
@@ -37,6 +38,8 @@ public class TicketController {
     @Autowired
     private CurrencyService currencyService;
 
+    private static TicketValidator tValidator = new TicketValidator();
+
     @PostMapping("/buy") 
     public ResponseEntity<Ticket> buyTicket(@RequestParam String firstname, @RequestParam String lastname,
                                             @RequestParam String phone, @RequestParam String email,
@@ -49,11 +52,19 @@ public class TicketController {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Please input all the required fields!");
         }
 
-        if (numberOfPeople <= 0) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Number of people on the ticket cannot be zero or smaller!");
+        if (!tValidator.validateEmail(email)) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The provided email is not valid!");
         }
 
-        if (seatNumber < 0) {
+        if (!tValidator.validatePhone(phone)) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The provided phone number is not valid!");
+        }
+
+        if (!tValidator.validateCreditCard(creditCard)) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The provided credit card number is not valid!");
+        }
+
+        if (!tValidator.validateSeatNumber(seatNumber)) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The seat number on the ticket cannot be zero or smaller!");
         }
 
@@ -71,12 +82,8 @@ public class TicketController {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The requested seat is already filled!");
         }
 
-        if (tripObj.getNumberOfSeatsAvailable() < numberOfPeople) {
+        if (!tValidator.validateNumberOfPeople(numberOfPeople, tripObj.getNumberOfSeatsAvailable())) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The trip cannot fit the requested number of people!");
-        }
-
-        if (tripObj.getNumberOfSeatsTotal() < seatNumber) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The seat number on the ticket cannot be larger than the number of available seats!");
         }
 
 

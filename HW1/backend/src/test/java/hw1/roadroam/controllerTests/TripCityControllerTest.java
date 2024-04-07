@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import hw1.roadroam.controllers.TripController;
-import hw1.roadroam.models.Currency;
+import hw1.roadroam.models.City;
 import hw1.roadroam.services.CityService;
 import hw1.roadroam.services.CurrencyService;
 import hw1.roadroam.services.TripService;
@@ -23,11 +23,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(TripController.class)
-class TripCurrencyControllerTest {
+class TripCityControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -43,47 +44,44 @@ class TripCurrencyControllerTest {
     @MockBean
     private RouteService routeService;
 
-    private Currency curr0 = new Currency();
-    private Currency curr1 = new Currency();
+    private City city0 = new City();
+    private City city1 = new City();
 
     @BeforeEach
     public void setUp() throws Exception {
-        //  Create two currencies
-        curr0.setId(1L);
-        curr0.setAbreviation("EUR");
-        curr0.setExchange_rate(2.0);
+        //  Create two cities
+        city0.setId(1L);
+        city0.setName("Aveiro");
 
-        curr1.setId(2L);
-        curr1.setAbreviation("AMD");
-        curr1.setExchange_rate(1.5);
+        city1.setId(2L);
+        city1.setName("Lisboa");
         
 
-        when(currencyService.listCurrencies()).thenReturn(List.of(curr0, curr1));
-        when(currencyService.getCurrency("EUR")).thenReturn(curr0);
-        when(currencyService.getCurrency("AMD")).thenReturn(curr1);
+        when(cityService.save(Mockito.any())).thenReturn(city0);
+        when(cityService.listCities()).thenReturn(List.of(city0, city1));
+    }
+    @Test
+    void whenPostValidCity_thenCreateCity() throws Exception {
+        mvc.perform(
+                post("/trips/addCity").contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtils.toJson(city0)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name", is(city0.getName())));
+
+        verify(cityService, times(1)).save(Mockito.any());
+
     }
 
     @Test
-    void givenTwoCurrencies_thenReturnThem() throws Exception {
+    void givenTwoCities_thenReturnThem() throws Exception {
 
         mvc.perform(
-                get("/trips/listCurrencies").contentType(MediaType.APPLICATION_JSON))
+                get("/trips/listCity").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].exchange_rate", is(curr0.getExchange_rate())))
-                .andExpect(jsonPath("$[1].exchange_rate", is(curr1.getExchange_rate())));
+                .andExpect(jsonPath("$[0].name", is(city0.getName())))
+                .andExpect(jsonPath("$[1].name", is(city1.getName())));
 
-        verify(currencyService, times(1)).listCurrencies();
-    }
-
-    @Test
-    void givenTheAbreviation_thenReturnTheCorrectCurrency() throws Exception {
-        mvc.perform(
-                get("/trips/getCurrency/" + curr0.getAbreviation()).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.exchange_rate", is(2.0)));
-
-        verify(currencyService, times(1)).getCurrency(Mockito.any());
-
+        verify(cityService, times(1)).listCities();
     }
 }

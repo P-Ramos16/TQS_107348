@@ -27,9 +27,9 @@ public class CurrencyService {
     @Autowired
     private CurrencyRepo currencyRepository;
     //  Epoch time from the last update
-    private long lastUpdate = 0;
+    public long lastUpdate = 0;
     //  Seconds for cache to become invalid
-    private Integer cacheUpdateTime = 30;
+    public Integer cacheUpdateTime = 30;
 
     @PostConstruct
     public void reloadCache() {
