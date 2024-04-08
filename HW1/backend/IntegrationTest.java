@@ -1,4 +1,4 @@
-package hw1.roadroam.frontendTests;
+package hw.roadroam.frontendTests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -14,8 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 
-import hw1.roadroam.models.Ticket;
-import hw1.roadroam.repositories.CarRepo;
+import hw.roadroam.models.Ticket;
+import hw.roadroam.repositories.CarRepo;
 
 import java.util.List;
 

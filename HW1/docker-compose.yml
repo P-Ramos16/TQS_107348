@@ -34,10 +34,13 @@ services:
     image: sonarqube:latest
     environment:
       SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+      SONARQUBE_HOME: "/sonarqube-data"
     ports:
       - "9000:9000"
     networks:
       - backend_network
+    volumes:
+      - ./sonar/data:/opt/sonarqube/data
 
 networks:
   request_network:

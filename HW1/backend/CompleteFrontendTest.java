@@ -1,8 +1,8 @@
-package hw1.roadroam.frontendTests;
+package hw.roadroam.frontendTests;
 
-import hw1.roadroam.frontendTests.webpages.SelectTrip;
-import hw1.roadroam.frontendTests.webpages.TicketDetails;
-import hw1.roadroam.frontendTests.webpages.HomePage;
+import hw.roadroam.frontendTests.webpages.SelectTrip;
+import hw.roadroam.frontendTests.webpages.TicketDetails;
+import hw.roadroam.frontendTests.webpages.HomePage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

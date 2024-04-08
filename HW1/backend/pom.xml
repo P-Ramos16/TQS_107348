@@ -8,7 +8,7 @@
 		<version>3.2.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>hw1</groupId>
+	<groupId>hw</groupId>
 	<artifactId>roadroam</artifactId>
 	<version>0.0.1</version>
 	<name>roadroam</name>
@@ -18,13 +18,14 @@
 		<java.version>17</java.version>
 		<selenium-java.version>4.18.1</selenium-java.version>
 		<selenium-jupiter.version>5.0.1</selenium-jupiter.version>
-		<sonar.organization>finex96</sonar.organization>
+		<sonar.organization>roadroam</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<cucumber.version>7.15.0</cucumber.version>
 		<junit-jupiter.version>5.10.2</junit-jupiter.version>
 		<junit-platform-suite.version>1.10.1</junit-platform-suite.version>
 		<surefire-plugin-version>3.0.0-M9</surefire-plugin-version>
     	<logback.version>1.5.3</logback.version>
+		<sonar.exclusions>**/RoadRoamApplication*.java</sonar.exclusions>
 	</properties>
 
 	<dependencies>
