@@ -64,10 +64,6 @@ public class TicketController {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The provided phone number is not valid!");
         }
 
-        if (!tValidator.validateCreditCard(creditCard)) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The provided credit card number is not valid!");
-        }
-
         if (!tValidator.validateSeatNumber(seatNumber)) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The seat number on the ticket cannot be zero or smaller!");
         }

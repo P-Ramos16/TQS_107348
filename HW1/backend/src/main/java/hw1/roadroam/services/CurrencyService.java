@@ -91,7 +91,6 @@ public class CurrencyService {
         } 
         catch (IOException e) {
             logger.error("Could not reach the Currency API! Aborting refresh.");
-            e.printStackTrace();
         }
 
         return;
