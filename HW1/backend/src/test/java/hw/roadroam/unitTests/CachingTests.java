@@ -31,17 +31,22 @@ public class CachingTests {
         Currency eurBefore = currencyService.getCurrency("USD");
 
         assertThat(eurBefore).isNull();
+        assertThat(currencyService.getCacheMisses()).isEqualTo(1);
     }
 
     @Test
     @Order(2)
     void testCachingUpdate() {
         //  Force a cache reset on the next currency check
-        currencyService.lastUpdate = 0;
 
+        assertThat(currencyService.getCacheMisses()).isEqualTo(0);
+
+        currencyService.lastUpdate = 0;
         currencyService.getCurrency("EUR");
 
         long lastUpdateBefore = currencyService.lastUpdate;
+
+        assertThat(currencyService.getCacheMisses()).isEqualTo(1);
 
         // Sleep for 35 seconds so cache is invalid
         try {
@@ -55,6 +60,8 @@ public class CachingTests {
         currencyService.getCurrency("EUR");
 
         long lastUpdateAfter = currencyService.lastUpdate;
+
+        assertThat(currencyService.getCacheMisses()).isEqualTo(2);
 
         //  Check that the update timer updated
         assertThat(lastUpdateBefore).isLessThan(lastUpdateAfter);

@@ -8,6 +8,11 @@ import hw.roadroam.services.TicketValidator;
 
 public class TicketValidatorTests {
 
+    @Test
+     void testValidEmail() {
+        TicketValidator ticketValidator = new TicketValidator();
+        assertTrue(ticketValidator.validateEmail("josesinhi@ua.com"));
+    }
 
     @Test
     void testInvalidEmail() {
@@ -16,23 +21,14 @@ public class TicketValidatorTests {
     }
 
     @Test
-     void testValidEmail() {
-        TicketValidator ticketValidator = new TicketValidator();
-        assertTrue(ticketValidator.validateEmail("zemanel@gmail.com"));
-    }
-
-    
-    @Test
-     void testInvalidPhone() {
-        TicketValidator ticketValidator = new TicketValidator();
-        assertFalse(ticketValidator.validatePhone("9123723"));
-    }
-
-    @Test
      void testValidPhone() {
         TicketValidator ticketValidator = new TicketValidator();
         assertTrue(ticketValidator.validatePhone("917264927"));
     }
 
-
+    @Test
+     void testInvalidPhone() {
+        TicketValidator ticketValidator = new TicketValidator();
+        assertFalse(ticketValidator.validatePhone("9123723"));
+    }
 }

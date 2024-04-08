@@ -34,6 +34,9 @@ public class CurrencyService {
     //  Seconds for cache to become invalid
     public Integer cacheUpdateTime = 30;
 
+    public Integer cacheHits = 0;
+    public Integer cacheMisses = 0;
+
     private static final Logger logger = LoggerFactory.getLogger(CurrencyService.class);
 
     @PostConstruct
@@ -70,7 +73,7 @@ public class CurrencyService {
             }
 
             this.lastUpdate = currTime;
-
+            this.cacheMisses += 1;
             System.out.println("Current Cache Reload: From " + this.lastUpdate + " to " + (this.lastUpdate + this.cacheUpdateTime));
 
             for (Map.Entry<String, Double> set :conversionRates.entrySet()) {
@@ -102,6 +105,9 @@ public class CurrencyService {
         if (current_time > this.lastUpdate + this.cacheUpdateTime) {
             reloadCache();
         }
+        else {
+            this.cacheHits += 1;
+        }
 
         return currencyRepository.findAll();
     }
@@ -113,6 +119,9 @@ public class CurrencyService {
         if (current_time > this.lastUpdate + this.cacheUpdateTime) {
             reloadCache();
         }
+        else {
+            this.cacheHits += 1;
+        }
 
         Optional<Currency> currency = currencyRepository.findByAbreviation(abre);
         if (currency.isPresent()) {
@@ -121,5 +130,14 @@ public class CurrencyService {
         else {
             return null;
         }
+    }
+
+    public Integer getCacheHits() {
+        return this.cacheHits;
+    }
+
+    public Integer getCacheMisses() {
+        return this.cacheMisses;
+
     }
 }
