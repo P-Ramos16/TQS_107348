@@ -17,10 +17,12 @@ import hw.roadroam.services.TripService;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.HashSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 class TripServiceTest {
@@ -132,5 +134,15 @@ class TripServiceTest {
         Mockito.verify(tripRepository, 
                 VerificationModeFactory.times(1))
                     .findAll();
+    }
+
+    @Test
+     void testFillAndEmptySeats() {
+        trip0.fillSeat(5, true);
+        assertThat(trip0.getFilledSeats()).contains(5);
+
+        trip0.fillSeat(5, false);
+        assertThat(trip0.getFilledSeats()).doesNotContain(5);
+        assertThrows(NoSuchElementException.class, () -> trip0.fillSeat(5, false));
     }
 }

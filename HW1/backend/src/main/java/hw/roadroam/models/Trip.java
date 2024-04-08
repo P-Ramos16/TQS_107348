@@ -128,7 +128,7 @@ public class Trip {
             this.filledSeats.add(seatID);
         }
         else {
-            if (this.filledSeats.contains(seatID)) {
+            if (!this.filledSeats.contains(seatID)) {
                 throw new NoSuchElementException("This seat was not yet filled!");
             }
             this.filledSeats.remove(seatID);

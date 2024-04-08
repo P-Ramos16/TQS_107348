@@ -51,22 +51,6 @@ public class Ticket {
         return this.finalPrice;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Ticket ticket = (Ticket) o;
-
-        return id.equals(ticket.id) && Objects.equals(numberOfPeople, ticket.numberOfPeople) && Objects.equals(finalPrice, ticket.finalPrice) && Objects.equals(aquisitionDate, ticket.aquisitionDate);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, numberOfPeople, finalPrice, aquisitionDate, trip, currency);
-    }
-
     public Long getId() {
         return id;
     }
