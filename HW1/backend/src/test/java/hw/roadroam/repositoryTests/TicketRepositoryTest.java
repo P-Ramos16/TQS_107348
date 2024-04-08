@@ -43,6 +43,7 @@ class TicketRepositoryTest {
     @Test
     void whenFindTicketById_thenReturnTicket() {
         //ensure data is persisted at this point
+        ticketRepository.delete(ticket0);
         ticketRepository.saveAndFlush(ticket0);
 
         // test the query method of interest
