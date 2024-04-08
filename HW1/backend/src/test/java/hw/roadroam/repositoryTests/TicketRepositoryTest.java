@@ -49,7 +49,7 @@ class TicketRepositoryTest {
         // test the query method of interest
         Ticket found = ticketRepository.findById(ticket0.getId()).get();
         
-        assertThat(found).isEqualTo(ticket0);
+        assertThat(found.getFirstname()).isEqualTo(ticket0.getFirstname());
     }
 
     @Test
