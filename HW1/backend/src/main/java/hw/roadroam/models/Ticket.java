@@ -1,7 +1,5 @@
 package hw.roadroam.models;
 
-import java.util.Objects;
-
 import hw.roadroam.services.CurrencyService;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

@@ -62,7 +62,6 @@ public class CurrencyService {
 
             // Extract conversion_rates and time_last_update_unix
             Map<String, Double> conversionRates = (Map<String, Double>) responseMap.get("conversion_rates");
-            //this.lastUpdate = ((Number) responseMap.get("time_last_update_unix")).longValue();
 
 
             Long currTime = System.currentTimeMillis() / 1000;
@@ -74,7 +73,6 @@ public class CurrencyService {
 
             this.lastUpdate = currTime;
             this.cacheMisses += 1;
-            System.out.println("Current Cache Reload: From " + this.lastUpdate + " to " + (this.lastUpdate + this.cacheUpdateTime));
 
             for (Map.Entry<String, Double> set :conversionRates.entrySet()) {
                 String abre = set.getKey();
@@ -95,14 +93,12 @@ public class CurrencyService {
         catch (IOException e) {
             logger.error("Could not reach the Currency API! Aborting refresh.");
         }
-
-        return;
     }
 
     public List<Currency> listCurrencies() {
-        long current_time = System.currentTimeMillis() / 1000;
+        long currenttime = System.currentTimeMillis() / 1000;
         
-        if (current_time > this.lastUpdate + this.cacheUpdateTime) {
+        if (currenttime > this.lastUpdate + this.cacheUpdateTime) {
             reloadCache();
         }
         else {
@@ -114,9 +110,9 @@ public class CurrencyService {
 
 
     public Currency getCurrency(String abre) {
-        long current_time = System.currentTimeMillis() / 1000;
+        long currenttime = System.currentTimeMillis() / 1000;
         
-        if (current_time > this.lastUpdate + this.cacheUpdateTime) {
+        if (currenttime > this.lastUpdate + this.cacheUpdateTime) {
             reloadCache();
         }
         else {
@@ -132,12 +128,28 @@ public class CurrencyService {
         }
     }
 
+    
+    public long getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(long lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Integer getCacheUpdateTime() {
+        return cacheUpdateTime;
+    }
+
+    public void setCacheUpdateTime(Integer cacheUpdateTime) {
+        this.cacheUpdateTime = cacheUpdateTime;
+    }
+
     public Integer getCacheHits() {
         return this.cacheHits;
     }
 
     public Integer getCacheMisses() {
         return this.cacheMisses;
-
     }
 }

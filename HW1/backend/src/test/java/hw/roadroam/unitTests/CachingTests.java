@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.InjectMocks;
 
 @ExtendWith(MockitoExtension.class)
-public class CachingTests {
+class CachingTests {
 
     @Mock(lenient = true)
     private CurrencyRepo currencyRepository;

@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import hw.roadroam.services.TicketValidator;
 
 
-public class TicketValidatorTests {
+class TicketValidatorTests {
 
     @Test
      void testValidEmail() {
         TicketValidator ticketValidator = new TicketValidator();
-        assertTrue(ticketValidator.validateEmail("josesinhi@ua.com"));
+        assertTrue(ticketValidator.validateEmail("jose@fino.ua.pt"));
     }
 
     @Test
