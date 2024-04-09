@@ -36,9 +36,6 @@ public class MainPageTests {
         homePage = new HomePage(driver);
     }
 
-
-
-
     @When("the user selects the origin with index {int}")
     public void userSelectsOrigin(Integer originCity)  {
         homePage.selectOnOriginSelectBox(originCity);
@@ -63,4 +60,5 @@ public class MainPageTests {
 
         driver.close();
     }
+    
 }

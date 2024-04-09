@@ -34,8 +34,8 @@ public class CurrencyService {
     //  Seconds for cache to become invalid
     public Integer cacheUpdateTime = 30;
 
-    public Integer cacheHits = 0;
-    public Integer cacheMisses = 0;
+    private Integer cacheHits = 0;
+    private Integer cacheMisses = 0;
 
     private static final Logger logger = LoggerFactory.getLogger(CurrencyService.class);
 

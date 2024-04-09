@@ -66,14 +66,14 @@ class CachingTests {
     @Test
     @Order(3)
     void testCachingHitsAndMisses() {
-        assertThat(currencyService.getCacheMisses()).isEqualTo(0);
-        assertThat(currencyService.getCacheHits()).isEqualTo(0);
+        assertThat(currencyService.getCacheMisses()).isZero();
+        assertThat(currencyService.getCacheHits()).isZero();
     }
 
     @Test
     @Order(4)
     void testCachingSettersAndGettersAndInitialValues() {
-        assertThat(currencyService.getLastUpdate()).isEqualTo(0);
+        assertThat(currencyService.getLastUpdate()).isZero();
         currencyService.setLastUpdate(123);
         assertThat(currencyService.getLastUpdate()).isEqualTo(123);
 

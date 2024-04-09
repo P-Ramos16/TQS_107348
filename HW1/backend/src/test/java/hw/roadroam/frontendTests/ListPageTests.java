@@ -34,10 +34,6 @@ public class ListPageTests {
         selectTripPage = new SelectTrip(driver, route);
     }
 
-
-
-
-
     @When("the user selects the trip number {int}")
     public void userSelectsTrip(Integer originCity)  {
         selectTripPage.selectTrip(originCity);
