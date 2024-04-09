@@ -29,7 +29,6 @@ services:
     depends_on:
       - frontend
       - sonarqube
-      - mysql_db
 
   sonarqube:
     image: sonarqube:latest
@@ -42,17 +41,6 @@ services:
       - backend_network
     volumes:
       - ./sonar/data:/opt/sonarqube/data
-
-  mysql_db:
-    image: "mysql:8.0"
-    restart: always
-    ports:
-      - 3307:3306
-    environment:
-      MYSQL_DATABASE: java_to_dev_app_db
-      MYSQL_USER: java_to_dev
-      MYSQL_PASSWORD: nE5kMc7JCGNqwDQM
-      MYSQL_ROOT_PASSWORD: nE5kMc7JCGNqwDQN
 
 networks:
   request_network:

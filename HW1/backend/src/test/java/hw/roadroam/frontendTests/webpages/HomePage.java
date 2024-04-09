@@ -12,8 +12,8 @@ public class HomePage {
     private WebDriver driver;
 
     //Page URL
-    private static String PAGE_URL="file:///home/frostywolf/Documents/GitReps/TQS_107348/HW1/frontend/src/index.html";
-    //private static String PAGE_URL="https://localhost:3000";
+    //private static String PAGE_URL="file:///home/frostywolf/Documents/GitReps/TQS_107348/HW1/frontend/src/index.html";
+    private static String PAGE_URL="https://localhost:3000/index.html";
 
     //Locators
     @FindBy(id = "origin")

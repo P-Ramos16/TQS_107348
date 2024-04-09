@@ -15,8 +15,8 @@ public class TicketDetails {
     private WebDriver driver;
 
     //Page URL
-    private static String PAGE_URL="file:///home/frostywolf/Documents/GitReps/TQS_107348/HW1/frontend/src/purchase.html";
-    //private static String PAGE_URL="https://localhost:3000";
+    //private static String PAGE_URL="file:///home/frostywolf/Documents/GitReps/TQS_107348/HW1/frontend/src/purchase.html";
+    private static String PAGE_URL="https://localhost:3000/purchase.html";
 
     @FindBy(id = "fname")
     WebElement fname;
