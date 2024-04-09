@@ -10,8 +10,8 @@ public class SelectTrip {
     private WebDriver driver;
 
     //Page URL
-    //private static String PAGE_URL="file:///home/frostywolf/Documents/GitReps/TQS_107348/HW1/frontend/src/selectpage.html";
-    private static String PAGE_URL="https://localhost:3000/selectpage.html";
+    private static String PAGE_URL="file:///home/frostywolf/Documents/GitReps/TQS_107348/HW1/frontend/src/selectpage.html";
+    //private static String PAGE_URL="https://localhost:3000/selectpage.html";
 
     @FindBy(xpath = "/html/body/div[3]/table/tbody/tr[2]/td[8]/button")
     private WebElement chooseTripButton;
