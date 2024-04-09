@@ -31,4 +31,18 @@ class TicketValidatorTests {
         TicketValidator ticketValidator = new TicketValidator();
         assertFalse(ticketValidator.validatePhone("9123723"));
     }
+
+    @Test
+     void testValidCreditCard() {
+        TicketValidator ticketValidator = new TicketValidator();
+        assertTrue(ticketValidator.validateCreditCard("9123723"));
+    }
+
+    @Test
+     void testValidNumberOfPeople() {
+        TicketValidator ticketValidator = new TicketValidator();
+        assertTrue(ticketValidator.validateNumberOfPeople(2, 3));
+        assertFalse(ticketValidator.validateNumberOfPeople(-2, 3));
+        assertFalse(ticketValidator.validateNumberOfPeople(12, 3));
+    }
 }
