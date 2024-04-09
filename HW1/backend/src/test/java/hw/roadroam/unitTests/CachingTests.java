@@ -62,4 +62,23 @@ class CachingTests {
         assertThat(lastUpdateBefore).isLessThan(lastUpdateAfter);
     }
 
+
+    @Test
+    @Order(3)
+    void testCachingHitsAndMisses() {
+        assertThat(currencyService.getCacheMisses()).isEqualTo(0);
+        assertThat(currencyService.getCacheHits()).isEqualTo(0);
+    }
+
+    @Test
+    @Order(4)
+    void testCachingSettersAndGettersAndInitialValues() {
+        assertThat(currencyService.getLastUpdate()).isEqualTo(0);
+        currencyService.setLastUpdate(123);
+        assertThat(currencyService.getLastUpdate()).isEqualTo(123);
+
+        assertThat(currencyService.getCacheUpdateTime()).isEqualTo(30);
+        currencyService.setCacheUpdateTime(16);
+        assertThat(currencyService.getCacheUpdateTime()).isEqualTo(16);
+    }
 }
