@@ -25,9 +25,7 @@
 		<junit-platform-suite.version>1.10.1</junit-platform-suite.version>
 		<surefire-plugin-version>3.0.0-M9</surefire-plugin-version>
     	<logback.version>1.5.3</logback.version>
-		<sonar.exclusions>**/RoadRoamApplication*.java</sonar.exclusions>
-		<sonar.exclusions>**/CucumberSeleniumTests*.java</sonar.exclusions>
-		<sonar.exclusions>*webpages*/*.java</sonar.exclusions>
+		<sonar.exclusions>**/RoadRoamApplication*.java, **/CucumberSeleniumTests*.java, *webpages*/*.java</sonar.exclusions>
 	</properties>
 
 	<dependencies>
