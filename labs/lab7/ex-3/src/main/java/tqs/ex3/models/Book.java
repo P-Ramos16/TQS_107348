@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 
 @Entity
-@Table(name = "book")
+@Table(name = "books")
 public class Book {
 
     @Id
